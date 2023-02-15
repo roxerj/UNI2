@@ -23,6 +23,8 @@ void ivesti_pazymius(studentas &stud);
 
 void generuoti_pazymius(studentas &stud);
 
+bool arskaicius(std::string test);
+
 int main(){
 
     std::vector<studentas> studentai;
@@ -114,13 +116,22 @@ double count_vid(const std::vector<int> &nd_vec)
 
 void ivesti_pazymius(studentas &stud)
 {
-    int temp_nd = 11;
+    std::string temp,temp1 = "a";
 
     std::cout << "Iveskite studento namu darbu pazymius balais nuo 1 iki 10, atskirkite juos tarpais. Iveskite 0, jei norite baigti ivedima" << std::endl;
 
     while(true)
     {
-        std::cin >> temp_nd;
+        std::cin >> temp;
+        
+        if(!arskaicius(temp))
+        {
+            std::cout << "Iveskite skaiciu be simboliu ar raidziu" << std::endl;
+            continue;
+        }
+         
+        int temp_nd = stoi(temp);
+        
         if((0 < temp_nd) && ( temp_nd < 11))
         {
             stud.nd_vec.push_back(temp_nd);
@@ -147,7 +158,13 @@ void ivesti_pazymius(studentas &stud)
     }
 
     std::cout << "Iveskite studento egzamino pazymi nuo 1 iki 10" << std::endl;
-    std::cin >> stud.egz;
+    std::cin >> temp1;
+    while(!arskaicius(temp1))
+    {
+        std::cout << "Iveskite skaiciu nuo 1 iki 10 be raidziu ar simboliu" << std::endl;
+        std::cin >> temp1;
+    }
+    stud.egz = stoi(temp1);
     while(stud.egz < 1 || stud.egz > 10)
     {
         std::cout << "Pazymis turi buti nuo 1 iki 10" << std::endl;
@@ -174,4 +191,16 @@ void generuoti_pazymius(studentas &stud)
 
     stud.egz = rand() % 10 +1;
 
+}
+
+bool arskaicius(std::string test)
+{
+    for(int i = 0; i < test.length(); i++)
+    {
+        if(!isdigit(test[i]))
+        {
+            return 0;
+        }
+    }
+    return 1;
 }
