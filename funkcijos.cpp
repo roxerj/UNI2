@@ -28,8 +28,13 @@ void print(std::vector<studentas> &studentai)
     
     auto start3 = std::chrono::high_resolution_clock::now();
     std::ofstream out_file("output.txt");
-    out_file << output;
-    out_file.close();
+
+    if (out_file.is_open()) { 
+        out_file.close();
+        std::cout << "Output isvestas i faila \"output.txt\"\n";
+    } else {
+        std::cout << "Isvesties failo atidaryti nepavyko.\n";
+    }
     auto end3 = std::chrono::high_resolution_clock::now();
 
     std::chrono::duration<double> duration2 = end2 - start2;
