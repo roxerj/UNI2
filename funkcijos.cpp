@@ -29,17 +29,20 @@ void print(std::vector<studentas> &studentai)
     auto start3 = std::chrono::high_resolution_clock::now();
     std::ofstream out_file("output.txt");
 
-    if (out_file.is_open()) { 
+    if (out_file.is_open()) 
+    { 
+        out_file << output;
         out_file.close();
-        std::cout << "Output isvestas i faila \"output.txt\"\n";
-    } else {
+        std::cout << "\nOutput isvestas i faila \"output.txt\"\n";
+    }else 
+    {
         std::cout << "Isvesties failo atidaryti nepavyko.\n";
     }
     auto end3 = std::chrono::high_resolution_clock::now();
 
     std::chrono::duration<double> duration2 = end2 - start2;
     std::chrono::duration<double> duration3 = end3 - start3;
-    std::cout << "\nOutputo formatavimas uztruko " << duration2.count() << " sec." << std::endl;
+    std::cout << "Outputo formatavimas uztruko " << duration2.count() << " sec." << std::endl;
     std::cout << "Outputo isvedimas i faila uztruko " << duration3.count() << " sec." << std::endl;
 
 }
@@ -61,7 +64,7 @@ double count_med(std::vector<int> &nd_vec)
 double count_vid(const std::vector<int> &nd_vec)
 {
     double temp = 0;
-    for(auto pazymys:nd_vec)
+    for(auto &pazymys:nd_vec)
     {
         temp += pazymys;
     }
