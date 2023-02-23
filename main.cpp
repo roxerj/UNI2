@@ -9,7 +9,7 @@ int main(){
 
 
     std::ifstream in_file;
-    in_file.open("C:/Users/juoza/cpp projects/v0.2/studentai100000.txt");
+    in_file.open("C:/Users/juoza/cpp projects/v0.2/studentai1000000.txt");
     if(!in_file)
     {
         std::cerr << "Failo atidaryti nepavyko."; // error
@@ -31,20 +31,20 @@ int main(){
     std::cout << "ND skaicius: " << nd_count << std::endl;
 
     auto start1 = std::chrono::high_resolution_clock::now(); //start timing
-
-    while(getline(in_file, line))
+    std::string temp_vardas, temp_pavarde;
+    
+    while(in_file >> temp_vardas >> temp_pavarde)
     {
         studentas stud;
-
-        std::istringstream iss(line);
-        iss >> stud.vardas >> stud.pavarde;
+        stud.vardas = temp_vardas;
+        stud.pavarde = temp_pavarde;
         for(int i = 0; i < nd_count; i++)
         { 
-            iss >> temp_nd;
+            in_file >> temp_nd;
             stud.nd_vec.push_back(temp_nd);
             temp_nd = 0;
         }
-        iss >> stud.egz;
+        in_file >> stud.egz;
         
         stud.galutinis_med = 0.4 * count_med(stud.nd_vec) + 0.6 * stud.egz;
         stud.galutinis_vid = 0.4 * count_vid(stud.nd_vec) + 0.6 * stud.egz;
@@ -52,17 +52,18 @@ int main(){
         studentai.push_back(stud);
         
     }
+
+    
     auto end1 = std::chrono::high_resolution_clock::now(); // stop timing
     std::chrono::duration<double> duration1 = end1 - start1;
-
+    std::cout << "Duomenu nuskaitymas ir galutiniu pazymiu skaiciavimas uztruko " << duration1.count() << " sec." << std::endl;
 
     print(studentai);
 
-    std::cout << "Duomenu nuskaitymas ir galutiniu pazymiu skaiciavimas uztruko " << duration1.count() << " sec." << std::endl;
+    
 
 
     in_file.close();
-
     return 0;
 }
 
