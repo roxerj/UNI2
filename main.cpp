@@ -4,20 +4,37 @@
 #include "funkcijos.h"
 #include <fstream>
 #include <chrono>
+#include <stdexcept>
 
 int main(){
+    
 
-
+    // system("dir");
+    // system("pause");
+    std::string failas;
     std::ifstream in_file;
-    in_file.open("C:/Users/juoza/cpp projects/v0.2/studentai1000000.txt");
-    if(!in_file)
+
+    while (true) 
     {
-        std::cerr << "Failo atidaryti nepavyko."; // error
-        return 1;
+        std::cout << "Iveskite failo pavadinima: ";
+        std::cin >> failas;
+        try 
+        {
+            in_file.open(failas);
+            if (!in_file) 
+            {
+                throw std::runtime_error("Failo atidaryti nepavyko.");
+            }
+            std::cout << "Failas atidarytas sekmingai" << std::endl;
+            break;
+        } catch (const std::exception& e) 
+        {
+            std::cerr << e.what() << std::endl;
+        }
     }
-    std::cout << "Failas atidarytas sekmingai" << std::endl;
 
     std::vector<studentas> studentai;
+    studentai.reserve(1000000);
     int temp_nd, nd_count, word_count = 0;
     std::string line, word;
     getline(in_file, line);
@@ -58,11 +75,17 @@ int main(){
     std::chrono::duration<double> duration1 = end1 - start1;
     std::cout << "Duomenu nuskaitymas ir galutiniu pazymiu skaiciavimas uztruko " << duration1.count() << " sec." << std::endl;
 
+    auto start_sort = std::chrono::high_resolution_clock::now(); //start timing
+    std::sort(studentai.begin(), studentai.end(), compare);
+    auto end_sort = std::chrono::high_resolution_clock::now(); // stop timing
+    std::chrono::duration<double> duration_sort = end_sort - start_sort;
+    std::cout << "Studentu rusiavimas pagal varda/pavarde uztruko " << duration_sort.count() << " sec." << std::endl;
+
     print(studentai);
 
     
 
-
+    studentai.clear();
     in_file.close();
     return 0;
 }
