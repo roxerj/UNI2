@@ -71,4 +71,14 @@ double count_vid(const std::vector<int> &nd_vec)
     return temp/double(nd_vec.size());
 }
 
+bool compare(const studentas& s1, const studentas& s2) {
+    if(s1.pavarde == s2.pavarde)
+    {
+        return s1.vardas < s2.vardas;
+    }
+    else
+    {
+        return s1.pavarde < s2.pavarde;
+    }
+}
 
