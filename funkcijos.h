@@ -20,5 +20,6 @@ double count_med(std::vector<int> &nd_vec);
 
 double count_vid(const std::vector<int> &nd_vec);
 
+bool compare(const studentas& s1, const studentas& s2);
 
 #endif
