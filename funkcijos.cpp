@@ -7,45 +7,118 @@
 #include <chrono>
 #include <fstream>
 #include <cstring>
+#include <cstdlib>
+#include <list>
+#include <deque>
+#include <filesystem>
 
-void isvedimas(std::vector<studentas> &studentai, std::string failo_pav)
+std::string generavimas()
 {
-    std::string output = "Vardas         Pavarde           Galutinis(vid.) Galutinis(med.)\n";
-    output += "-----------------------------------------------------------------------\n";
-    
-    Timer formatavimas_timer;
-    formatavimas_timer.start();
-    for (auto &studentas : studentai)
+    std::string failo_pavadinimas;
+    int choice, studentu_skaicius;
+    std::string testas;
+
+    while (true) 
     {
-        char a[20];
-        sprintf(a, "%5.2f           %5.2f", studentas.galutinis_vid, studentas.galutinis_med);
+        std::cout << "Iveskite 1, jei norite generuoti studentu faila, iveskite 2, jei norite atlikti veiksmus su esamu failu, arba 3, jei norite iseiti: ";
+        std::cin >> choice;
 
-        studentas.vardas.resize(15, ' ');
-        studentas.pavarde.resize(17, ' ');
+        try 
+        {
+            if (std::cin.fail()) 
+            {
+                throw std::runtime_error("Klaida: blogas pasirinkimas. Pasirinkite 1, 2 arba 3");
+            }
 
-        output += studentas.vardas + studentas.pavarde + std::string(a) + "\n";
+            if (choice == 1) 
+            {
+                std::cout << "Kiek bus studentu? ";
+                std::cin >> studentu_skaicius;
+
+                try {
+                    if (std::cin.fail() || studentu_skaicius <= 0) 
+                    {
+                        throw std::runtime_error("Klaida: neteisingai ivestas studentu skaicius");
+                    }
+
+                    testas = generuoti(studentu_skaicius);
+                    failo_pavadinimas = "stud" + std::to_string(studentu_skaicius) + ".txt";
+
+                    std::ofstream out_file(failo_pavadinimas);
+
+                    if (!out_file.is_open()) 
+                    {
+                        throw std::runtime_error("Klaida: nepavyko sukurti failo");
+                    }
+
+                    out_file << testas;
+                    out_file.close();
+                    
+                    break;
+                }
+                catch (const std::runtime_error& e) 
+                {
+                    std::cout << e.what() << std::endl;
+                    std::cin.clear();
+                    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                }
+            }
+
+            else if (choice == 2) 
+            {
+                std::cout << "Esami failai:\n";
+
+                for (const auto& entry : std::filesystem::directory_iterator(".")) 
+                {
+                    if (entry.is_regular_file() && entry.path().extension() == ".txt") {
+                        std::cout << entry.path().filename() << std::endl;
+                    }
+                }
+
+
+                std::cout << "Iveskite failo pavadinima: ";
+                std::cin >> failo_pavadinimas;
+
+                std::ifstream in_file(failo_pavadinimas);
+
+                if (!in_file) 
+                {
+                    throw std::runtime_error("Klaida: failas " + failo_pavadinimas + " neegzistuoja");
+                }
+
+                in_file.close();
+                
+                std::cout << "Iveskite 1, jei norite naudoti vector konteineri, 2 jei norite naudoti list, 3 jei norite naudoti deque ";
+                std::cin >> sub_choice;
+
+                if (sub_choice != '1' && sub_choice != '2' && sub_choice != '3') 
+                {
+                    throw std::runtime_error("Klaida: blogas pasirinkimas. Pasirinkite '1', '2' arba '3'");
+                }
+                
+                break;
+            }
+
+            else if (choice == 3) 
+            {
+                exit(0);
+            }
+
+            else 
+            {
+                throw std::runtime_error("Klaida: blogas pasirinkimas. Pasirinkite 1, 2 arba 3");
+            }
+        }
+        catch (const std::runtime_error& e) 
+        {
+            std::cout << e.what() << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
     }
-    formatavimas_timer.stop();
-    
-    
-    Timer isvedimas_timer;
-    isvedimas_timer.start();
-    std::ofstream out_file(failo_pav);
-
-    if (out_file.is_open()) 
-    { 
-        out_file << output;
-        out_file.close();
-    }else 
-    {
-        std::cout << "Isvesties failo atidaryti nepavyko.\n";
-    }
-    isvedimas_timer.stop();
-
-    std::cout << failo_pav <<" formatavimas uztruko " << formatavimas_timer.elapsed() << " sec." << std::endl;
-    std::cout << failo_pav << " isvedimas i faila uztruko " << isvedimas_timer.elapsed() << " sec." << std::endl;
-
+    return failo_pavadinimas;
 }
+
 
 
 double count_med(std::vector<int> &nd_vec)
@@ -134,61 +207,10 @@ std::string generuoti(int count)
     
 }
 
-void rusiavimas(std::vector<studentas> &studentai, std::vector<studentas> &vargsai, std::vector<studentas> &malaciai)
-{
-    for(auto &stud:studentai)
-    {
-        if(stud.galutinis_vid < 5)
-        {
-            vargsai.push_back(stud);
-        }
-        else
-        {
-            malaciai.push_back(stud);
-        }
-    }
-}
 
-void nuskaitymas(std::vector<studentas> &studentai, std::string failo_pavadinimas)
-{
-    std::string failas;
-    std::ifstream in_file;
 
-    in_file.open(failo_pavadinimas);
 
-    
-    int temp_nd, nd_count, word_count = 0;
-    std::string line, word;
-    getline(in_file, line);
- 
-    std::istringstream iss(line);
-    while(iss >> word)
-    {
-        word_count++;
-    }
-    nd_count = word_count - 3;
 
-    std::string temp_vardas, temp_pavarde;
-    
-    while(in_file >> temp_vardas >> temp_pavarde)
-    {
-        studentas stud;
-        stud.vardas = temp_vardas;
-        stud.pavarde = temp_pavarde;
-        for(int i = 0; i < nd_count; i++)
-        { 
-            in_file >> temp_nd;
-            stud.nd_vec.push_back(temp_nd);
-            temp_nd = 0;
-        }
-        in_file >> stud.egz;
-        
-        stud.galutinis_med = 0.4 * count_med(stud.nd_vec) + 0.6 * stud.egz;
-        stud.galutinis_vid = 0.4 * count_vid(stud.nd_vec) + 0.6 * stud.egz;
 
-        studentai.push_back(stud);
-        
-    }
-}
 
 
