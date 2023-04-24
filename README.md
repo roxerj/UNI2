@@ -1,3 +1,28 @@
+# v0.5
+
+v0.5 atnaujinimai:
+Dabar programa leidžia pasirinkti konteinerį, su kuriuo bus atliekami veiksmai - vector, list arba deque.
+Naudoju šablonines funkcijas, kurios veikia su bet kokiu naudojamu konteineriu.
+
+
+
+
+
+
+Naudojant list:
+|**LIST**   | 1k  |10k   |100k   |1M   |10M   |
+|---|---|---|---|---|---|
+|**Nuskaitymas**   |_0.002255_   |_0.020398_   |_0.204996_   |_1.76657_   |_19.2724_   |
+|**Rūšiavimas**   |_0.000178_   |_0.001654_   |_0.019641_   |_0.180727_   |_1.84553_   |
+|**Vargsai išvedimas**   |_0.020804_   |_0.004767_   |_0.043911_   |_0.450671_   |_4.40405_   |
+|**Malaciai išvedimas**   |_0.033024_   |_0.006826_   |_0.063624_   |_0.627831_   |_6.41769_   |
+|**Viso**   |_0.03805_   |_0.037109_   |_0.33603_   |_3.03121_   |_31.981_   |
+|**Generavimas**   |_0.001879_   |_0.020029_   |_0.17398_   |_1.72649_   |_12.9375_   |
+
+
+
+
+
 # v0.4
 
 v0.4 atnaujinimai:
