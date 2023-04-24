@@ -4,9 +4,20 @@ v0.5 atnaujinimai:
 Dabar programa leidžia pasirinkti konteinerį, su kuriuo bus atliekami veiksmai - vector, list arba deque.
 Naudoju šablonines funkcijas, kurios veikia su bet kokiu naudojamu konteineriu.
 
+Mano kompiuterio specifikacijos : 16gb RAM, CPU - AMD Ryzen 5 4600H, GPU - Nvidia Geforce GTX 1650 TI
 
+Programos veikimo principas:
 
+Programa paklausia vartotojo, ar generuoti studentų failą, ar atlikti veiksmus su jau esamu failu.
+Jei pasirenkama generuoti failą, vartotojo klausiama, kiek studentų bus faile.
+Prieš atliekant veiksmus su failu, vartotojo klausiama, kurį konteinerį naudoti veiksmams su failu. (Vector, list, deque)
+Atliekami veiksmai su pasirinktu failu:
+1) Nuskaitomi duomenys, suskaičiuojami studentų galutiniai pažymiai
+2) Studentai išrūšiuojami į du naujus konteinerius: malaciai, jei galutinis pažymis >=5, vargsai, jei pažymys <5
+3) Suformatuojami duomenys iš vargsai konteinerio, rezultatas išvedamas į "vargsai.txt"
+4) Suformatuojami duomenys iš malaciai konteinerio, rezultatas išvedamas į "malaciai.txt"
 
+Matome, kad naudojant list arba deque vietoj vector, programos veikimo sparta beveik nesikeičia.
 
 
 Naudojant list:
@@ -19,8 +30,15 @@ Naudojant list:
 |**Viso**   |_0.03805_   |_0.037109_   |_0.33603_   |_3.03121_   |_31.981_   |
 |**Generavimas**   |_0.001879_   |_0.020029_   |_0.17398_   |_1.72649_   |_12.9375_   |
 
-
-
+Naudojant deque:
+|**DEQUE**   | 1k  |10k   |100k   |1M   |10M   |
+|---|---|---|---|---|---|
+|**Nuskaitymas**   |_0.002619_   |_0.019049_   |_0.201048_   |_1.94471_   |_19.258_   |
+|**Rūšiavimas**   |_0.000167_   |_0.001469_   |_0.015256_   |_0.130697_   |_1.60812_   |
+|**Vargsai išvedimas**   |_0.019543_   |_0.00548_   |_0.039213_   |_0.439459_   |_4.32674_   |
+|**Malaciai išvedimas**   |_0.028777_   |_0.007408_   |_0.056731_   |_0.661483_   |_6.0704_   |
+|**Viso**   |_0.054019_   |_0.036882_   |_0.316761_   |_3.18256_   |_31.2998_   |
+|**Generavimas**   |_0.001879_   |_0.020029_   |_0.17398_   |_1.72649_   |_12.9375_   |
 
 
 # v0.4
