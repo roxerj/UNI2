@@ -1,3 +1,44 @@
+# v1.0 
+
+v1.0 atnaujinimai:
+Skaidydamas studentai konteinerį į malaciai ir vargsai praeitose versijose sukurdavau du naujus konteinerius malaciai ir vargsai, kopijuodamas studento objektą į vieną arba kitą konteinerį, tokia programos realizacija yra neefektyvi atminties atžvilgiu.
+v1.0 versijoje studentai konteinerį skaidau naudodamas tik vieną naują konteinerį vargsai, perkeldamas studento objektą iš studentai į vargsai, tad konteineryje studentai lieka "malaciai".
+Sukurtas makefile, parašius komandinę eilutę "make", programa yra sukompiliuojama ir paruošiamas exe failas.
+
+Mano kompiuterio specifikacijos : 16gb RAM, CPU - AMD Ryzen 5 4600H, GPU - Nvidia Geforce GTX 1650 TI
+
+Programos veikimo principas:
+
+Programa paklausia vartotojo, ar generuoti studentų failą, ar atlikti veiksmus su jau esamu failu.
+Jei pasirenkama generuoti failą, vartotojo klausiama, kiek studentų bus faile.
+Prieš atliekant veiksmus su failu, vartotojo klausiama, kurį konteinerį naudoti veiksmams su failu. (Vector, list, deque)
+Atliekami veiksmai su pasirinktu failu:
+1) Nuskaitomi duomenys, suskaičiuojami studentų galutiniai pažymiai
+2) Studentai išskaidomi į "malacius" ir "vargsus" naudojant studentai ir vargsai konteinerius: studentai konteineryje lieka studentai, kurių gal. pažymys >=5, o vargsai konteineryje atsiranda studentai, kurių gal. pažymys <5, jie ištrinami iš studentai konteinerio.
+3) Suformatuojami duomenys iš vargsai konteinerio, rezultatas išvedamas į "vargsai.txt"
+4) Suformatuojami duomenys iš studentai konteinerio, rezultatas išvedamas į "malaciai.txt"
+
+Matome, kad atnaujintoje programos versijoje programa atlieka darbą truputį sparčiau, bet nedaug. Su 10m studentų programa veikia gal 5sec trumpiau nei praeitoje versijoje.
+
+Naudojant list:
+|**LIST**   | 1k  |10k   |100k   |1M   |10M   |
+|---|---|---|---|---|---|
+|**Nuskaitymas**   |_0.002255_   |_0.020398_   |_0.204996_   |_1.76657_   |_18.8843_   |
+|**Rūšiavimas**   |_0.000178_   |_0.001654_   |_0.019641_   |_0.180727_   |_0.30544_   |
+|**Vargsai išvedimas**   |_0.020804_   |_0.004767_   |_0.043911_   |_0.450671_   |_3.2987_   |
+|**Malaciai išvedimas**   |_0.033024_   |_0.006826_   |_0.063624_   |_0.627831_   |_4.66719_   |
+|**Viso**   |_0.03805_   |_0.037109_   |_0.33603_   |_2.73121_   |_27.981_   |
+
+
+Naudojant deque:
+|**DEQUE**   | 1k  |10k   |100k   |1M   |10M   |
+|---|---|---|---|---|---|
+|**Nuskaitymas**   |_0.002619_   |_0.019049_   |_0.201048_   |_1.94471_   |_18.5413_   |
+|**Rūšiavimas**   |_0.000167_   |_0.001469_   |_0.015256_   |_0.130697_   |_0.49566_   |
+|**Vargsai išvedimas**   |_0.019543_   |_0.00548_   |_0.039213_   |_0.439459_   |_2.97396_   |
+|**Malaciai išvedimas**   |_0.028777_   |_0.007408_   |_0.056731_   |_0.661483_   |_4.49107_   |
+|**Viso**   |_0.054019_   |_0.036882_   |_0.316761_   |_3.18256_   |_26.532_   |
+
 # v0.5
 
 v0.5 atnaujinimai:
