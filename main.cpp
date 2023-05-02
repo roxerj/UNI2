@@ -59,15 +59,15 @@ int main(){
     
     if(sub_choice == '1')
     {
-        rusiavimas(studentai_vector, vargsai_vector, malaciai_vector);
+        rusiavimas(studentai_vector, vargsai_vector);
     }
     else if(sub_choice == '2')
     {
-        rusiavimas(studentai_list, vargsai_list, malaciai_list);
+        rusiavimas(studentai_list, vargsai_list);
     }
     else if(sub_choice == '3')
     {
-        rusiavimas(studentai_deque, vargsai_deque, malaciai_deque);
+        rusiavimas(studentai_deque, vargsai_deque);
     }
     sort_timer.stop();
     std::cout << "Studentu rusiavimas i vargsus ir malacius uztruko " << sort_timer.elapsed() << " sec." << std::endl;
@@ -75,17 +75,17 @@ int main(){
     if(sub_choice == '1')
     {
         isvedimas<std::vector<studentas>>(vargsai_vector, "vargsai.txt");
-        isvedimas<std::vector<studentas>>(malaciai_vector, "malaciai.txt");
+        isvedimas<std::vector<studentas>>(studentai_vector, "malaciai.txt");
     }
     else if(sub_choice == '2')
     {
         isvedimas<std::list<studentas>>(vargsai_list, "vargsai.txt");
-        isvedimas<std::list<studentas>>(malaciai_list, "malaciai.txt");
+        isvedimas<std::list<studentas>>(studentai_list, "malaciai.txt");
     }
     else if(sub_choice == '3')
     {
         isvedimas<std::deque<studentas>>(vargsai_deque, "vargsai.txt");
-        isvedimas<std::deque<studentas>>(malaciai_deque, "malaciai.txt");
+        isvedimas<std::deque<studentas>>(studentai_deque, "malaciai.txt");
     }
 
     bendras_timer.stop();
