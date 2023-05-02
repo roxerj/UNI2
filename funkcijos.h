@@ -17,10 +17,10 @@
 struct studentas {
     std::string vardas;
     std::string pavarde;
-    std::vector<int> nd_vec {};
+    // std::vector<int> nd_vec {};
     int egz {};
     float galutinis_vid {};
-    float galutinis_med {};
+    // float galutinis_med {};
 };
 
 class Timer 
@@ -61,20 +61,13 @@ bool compare(const studentas& s1, const studentas& s2);
 std::string generuoti(int count);
 
 template<typename T>
-void rusiavimas(T &studentai, T &vargsai, T &malaciai)
+void rusiavimas(T &studentai, T &vargsai)
 {
-    for(auto &stud:studentai)
-    {
-        if(stud.galutinis_vid < 5)
-        {
-            vargsai.push_back(stud);
-        }
-        else
-        {
-            malaciai.push_back(stud);
-        }
-    }
+    auto it = std::partition(studentai.begin(), studentai.end(), [](auto const& s){ return s.galutinis_vid >= 5; });
+    std::move(it, studentai.end(), std::back_inserter(vargsai));
+    studentai.erase(it, studentai.end());
 };
+
 
 template<typename T>
 void nuskaitymas(T &studentai, std::string failo_pavadinimas)
@@ -97,6 +90,8 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
 
     std::string temp_vardas, temp_pavarde;
 
+    std::vector<int> nd_vec {};
+
     while(in_file >> temp_vardas >> temp_pavarde)
     {
         studentas stud;
@@ -105,31 +100,31 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
         for(int i = 0; i < nd_count; i++)
         {
             in_file >> temp_nd;
-            stud.nd_vec.push_back(temp_nd);
+            nd_vec.push_back(temp_nd);
             temp_nd = 0;
         }
         in_file >> stud.egz;
 
-        stud.galutinis_med = 0.4 * count_med(stud.nd_vec) + 0.6 * stud.egz;
-        stud.galutinis_vid = 0.4 * count_vid(stud.nd_vec) + 0.6 * stud.egz;
+        // stud.galutinis_med = 0.4 * count_med(nd_vec) + 0.6 * stud.egz;
+        stud.galutinis_vid = 0.4 * count_vid(nd_vec) + 0.6 * stud.egz;
 
         studentai.push_back(stud);
-
+        nd_vec.clear();
     }
 };
 
 template<typename T>
 void isvedimas(T &studentai, std::string failo_pav)
 {
-    std::string output = "Vardas         Pavarde           Galutinis(vid.) Galutinis(med.)\n";
-    output += "-----------------------------------------------------------------------\n";
+    std::string output = "Vardas         Pavarde           Galutinis(vid.)\n";
+    output += "-----------------------------------------------------\n";
     
     Timer isvedimas_timer;
     isvedimas_timer.start();
     for (auto &studentas : studentai)
     {
         char a[20];
-        sprintf(a, "%5.2f           %5.2f", studentas.galutinis_vid, studentas.galutinis_med);
+        sprintf(a, "%5.2f", studentas.galutinis_vid);
 
         studentas.vardas.resize(15, ' ');
         studentas.pavarde.resize(17, ' ');  
