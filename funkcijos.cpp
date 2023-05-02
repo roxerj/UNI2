@@ -101,6 +101,7 @@ std::string generavimas()
 
             else if (choice == 3) 
             {
+                std::cout << "Programa baige darba";
                 exit(0);
             }
 
