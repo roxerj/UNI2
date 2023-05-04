@@ -14,13 +14,12 @@
 #include <deque>
 
 
-struct studentas {
-    std::string vardas;
-    std::string pavarde;
-    // std::vector<int> nd_vec {};
-    int egz {};
-    float galutinis_vid {};
-    // float galutinis_med {};
+class studentas {
+    public:
+        std::string vardas;
+        std::string pavarde;
+        float galutinis_vid {};
+      
 };
 
 class Timer 
@@ -91,7 +90,7 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
     std::string temp_vardas, temp_pavarde;
 
     std::vector<int> nd_vec {};
-
+    int egz = 0;
     while(in_file >> temp_vardas >> temp_pavarde)
     {
         studentas stud;
@@ -103,10 +102,10 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
             nd_vec.push_back(temp_nd);
             temp_nd = 0;
         }
-        in_file >> stud.egz;
+        in_file >> egz;
 
         // stud.galutinis_med = 0.4 * count_med(nd_vec) + 0.6 * stud.egz;
-        stud.galutinis_vid = 0.4 * count_vid(nd_vec) + 0.6 * stud.egz;
+        stud.galutinis_vid = 0.4 * count_vid(nd_vec) + 0.6 * egz;
 
         studentai.push_back(stud);
         nd_vec.clear();
@@ -131,9 +130,6 @@ void isvedimas(T &studentai, std::string failo_pav)
 
         output += studentas.vardas + studentas.pavarde + std::string(a) + "\n";
     }
-    
-    
-    
     
     std::ofstream out_file(failo_pav);
 
