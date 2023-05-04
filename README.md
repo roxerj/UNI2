@@ -6,13 +6,13 @@ v1.1 atnaujinimai: ankstesnėse versijose naudojau struct studentas, dabar naudo
 
 Naudojant vector:
 |   | 100k  |1M   |10M   |
-|---|---|---|---|---|---|
+|---|---|---|---|
 |**struct**   |_0.002255_   |_0.020398_   |_0.204996_   |
 |**class**   |_0.000178_   |_0.001654_   |_0.019641_   |
 
 Optimizavimo flag'ų testavimas (10M):
 |   | laikas(s)  |exe failo užimama vieta   |
-|---|---|---|---|---|---|
+|---|---|---|
 |**-**   |_29.8815_   |_1059KB_   |
 |**-O1**   |_26.2167_   |_1302KB_   |
 |**-O2**   |_25.8021_   |_1343KB_   |
