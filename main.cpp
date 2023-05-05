@@ -91,7 +91,7 @@ int main(){
     bendras_timer.stop();
     std::cout << "Visos programos veikimo laikas " << bendras_timer.elapsed() << " sec." << std::endl;
     
-
+    std::cout << "vargsai dydis: " << vargsai_vector.size() << ", malaciai(studentai vector) dydis: " << studentai_vector.size() << std::endl;
     
 
     return 0;

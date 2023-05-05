@@ -15,11 +15,98 @@
 
 
 class studentas {
-    public:
+    private:
         std::string vardas;
         std::string pavarde;
         float galutinis_vid {};
-      
+    public:
+
+       
+        studentas(std::string vard, std::string pavard) : vardas(vard), pavarde(pavard)
+        {
+
+        }
+        
+        studentas(const studentas &other) 
+            :   vardas(other.vardas), 
+                pavarde(other.pavarde), 
+                galutinis_vid(other.galutinis_vid)  //copy constructor
+        {
+          //copy data from src to this
+        }
+        studentas(studentas &&other) //move constructor
+            :   vardas(std::move(other.vardas)),
+                pavarde(std::move(other.pavarde)),
+                galutinis_vid(std::move(other.galutinis_vid))
+        {
+            //move data from src to this
+            
+        }
+        studentas &operator=(const studentas &other) //copy assignment operator
+        {
+            //copy data from src to this
+            
+            if (this != &other)
+            {
+                this->vardas = other.vardas;
+                this->pavarde = other.pavarde;
+                this->galutinis_vid = other.galutinis_vid;
+            }
+            return *this;
+        }
+
+        studentas &operator=(studentas &&other) //move assignment operator
+        {
+            if (this != &other)
+            {
+                vardas = std::move(other.vardas);
+                pavarde = std::move(other.pavarde);
+                galutinis_vid = std::move(other.galutinis_vid);
+            }
+            return *this;
+        }
+        ~studentas() // destructor
+        {
+    
+        }
+
+        double count_vid(const std::vector<int> &nd_vec)
+        {
+            double temp = 0;
+            for(auto &pazymys:nd_vec)
+            {
+                temp += pazymys;
+            }
+            return temp/double(nd_vec.size());
+        }
+        void vardasResize(int size)
+        {
+            vardas.resize(size, ' ');
+        }
+        void pavardeResize(int size)
+        {
+            pavarde.resize(size, ' ');
+        }
+
+        //getter functions
+        std::string getVardas() const
+        {
+            return vardas;
+        }
+
+        std::string getPavarde() const
+        {
+            return pavarde;
+        }
+
+        double getGalutinis() const
+        {
+            return galutinis_vid;
+        }
+        void setGalutinis(const std::vector<int>& nd_vec, int egz) 
+        {
+            galutinis_vid = 0.4 * count_vid(nd_vec) + 0.6 * egz;
+        }
 };
 
 class Timer 
@@ -60,12 +147,18 @@ bool compare(const studentas& s1, const studentas& s2);
 std::string generuoti(int count);
 
 template<typename T>
-void rusiavimas(T &studentai, T &vargsai)
+void rusiavimas(T& studentai, T& vargsai)
 {
-    auto it = std::partition(studentai.begin(), studentai.end(), [](auto const& s){ return s.galutinis_vid >= 5; });
+    auto it = std::stable_partition(studentai.begin(), studentai.end(), [](const studentas& s) { return s.getGalutinis() >= 5; });
+    if (it == studentai.end()) {
+        // partition failed, do not modify vectors
+        std::cout << "partition failed\n";
+        return;
+    }
     std::move(it, studentai.end(), std::back_inserter(vargsai));
     studentai.erase(it, studentai.end());
-};
+}
+
 
 
 template<typename T>
@@ -93,9 +186,7 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
     int egz = 0;
     while(in_file >> temp_vardas >> temp_pavarde)
     {
-        studentas stud;
-        stud.vardas = temp_vardas;
-        stud.pavarde = temp_pavarde;
+        studentas stud(temp_vardas, temp_pavarde);
         for(int i = 0; i < nd_count; i++)
         {
             in_file >> temp_nd;
@@ -105,7 +196,7 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
         in_file >> egz;
 
         // stud.galutinis_med = 0.4 * count_med(nd_vec) + 0.6 * stud.egz;
-        stud.galutinis_vid = 0.4 * count_vid(nd_vec) + 0.6 * egz;
+        stud.setGalutinis(nd_vec, egz);
 
         studentai.push_back(stud);
         nd_vec.clear();
@@ -120,15 +211,15 @@ void isvedimas(T &studentai, std::string failo_pav)
     
     Timer isvedimas_timer;
     isvedimas_timer.start();
-    for (auto &studentas : studentai)
+    for (studentas &studentas : studentai)
     {
         char a[20];
-        sprintf(a, "%5.2f", studentas.galutinis_vid);
+        sprintf(a, "%5.2f", studentas.getGalutinis());
 
-        studentas.vardas.resize(15, ' ');
-        studentas.pavarde.resize(17, ' ');  
+        studentas.vardasResize(15);
+        studentas.pavardeResize(17);  
 
-        output += studentas.vardas + studentas.pavarde + std::string(a) + "\n";
+        output += studentas.getVardas() + studentas.getPavarde() + std::string(a) + "\n";
     }
     
     std::ofstream out_file(failo_pav);

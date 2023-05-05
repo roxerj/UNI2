@@ -136,24 +136,16 @@ double count_med(std::vector<int> &nd_vec)
     }
 }
 
-double count_vid(const std::vector<int> &nd_vec)
-{
-    double temp = 0;
-    for(auto &pazymys:nd_vec)
-    {
-        temp += pazymys;
-    }
-    return temp/double(nd_vec.size());
-}
+
 
 bool compare(const studentas& s1, const studentas& s2) {
-    if(s1.pavarde == s2.pavarde)
+    if(s1.getPavarde() == s2.getPavarde())
     {
-        return s1.vardas < s2.vardas;
+        return s1.getVardas() < s2.getVardas();
     }
     else
     {
-        return s1.pavarde < s2.pavarde;
+        return s1.getPavarde() < s2.getPavarde();
     }
 }
 
