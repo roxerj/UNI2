@@ -1,5 +1,20 @@
 Naudojimo instrukcija: parsisiuntus failus įveskite "make" į komandinę eilutę, tada paleiskite exe failą. Sekite instrukcijas konsolėje
 
+# v1.2
+
+v1.2 atnaujinimai: šioje versijoje _studentas_ struktūra pilnai pakeista į _studentas_ klasę. Implementuota 5-ių taisyklė - sukurtas copy constructor, copy assignment operator, move constructor, move assignment operator, destruktorius. Programoje daug kur pakeistas kodas, dirbant su _studentas_ objektais, naudojant OOP praktiką.
+
+Programa dabar veikia sparčiau, ir užima mažiau atminties.
+
+Testavimas atliktas naudojant vector konteinerį.
+|**VECTOR**   |100k   |1M   |10M   |
+|---|---|---|---|
+|**Nuskaitymas**   |_0.193s_   |_1.423s_   |_14.176s_   |
+|**Rūšiavimas**   |_0.007s_   |_0.059s_   |_0.64s_   |
+|**Vargsai išvedimas**   |_0.051s_   |_0.335s_   |_3.521s_   |
+|**Malaciai išvedimas**   |_0.071s_   |_0.484s_   |_5.788s_   |
+|**Viso**   |_0.326s_   |_2.307s_   |_24.152s_   |
+
 # v1.1
 
 v1.1 atnaujinimai: ankstesnėse versijose naudojau struct studentas, dabar naudoju class studentas. Programa veikia truputį sparčiau, bet nežymiai.
@@ -7,8 +22,8 @@ v1.1 atnaujinimai: ankstesnėse versijose naudojau struct studentas, dabar naudo
 Naudojant vector:
 |   | 100k  |1M   |10M   |
 |---|---|---|---|
-|**struct**   |_0.002255_   |_0.020398_   |_0.204996_   |
-|**class**   |_0.000178_   |_0.001654_   |_0.019641_   |
+|**struct**   |_0.51s_   |_4.89s_   |_32.57s_   |
+|**class**   |_0.49s_   |_4.36s_   |_27.33s_   |
 
 Optimizavimo flag'ų testavimas (10M):
 |   | laikas(s)  |exe failo užimama vieta   |
@@ -41,6 +56,17 @@ Atliekami veiksmai su pasirinktu failu:
 4) Suformatuojami duomenys iš studentai konteinerio, rezultatas išvedamas į "malaciai.txt"
 
 Matome, kad atnaujintoje programos versijoje programa atlieka darbą truputį sparčiau, bet nedaug. Su 10m studentų programa veikia gal 5sec trumpiau nei praeitoje versijoje.
+
+Naudojant vector:
+|**VECTOR**   | 1k  |10k   |100k   |1M   |10M   |
+|---|---|---|---|---|---|
+|**Nuskaitymas**   |_0.004411_   |_0.034408_   |_0.290819_   |_2.891_   |_20.6048_   |
+|**Rūšiavimas**   |_0.000471_   |_0.005166_   |_0.037893_   |_0.233474_   |_1.62612_   |
+|**Vargsai išvedimas**   |_0.026193_   |_0.054142_   |_0.074769_   |_0.718508_   |_4.06602_   |
+|**Malaciai išvedimas**   |_0.002301_   |_0.073061_   |_0.104735_   |_1.04496_   |_6.24776_   |
+|**Viso**   |_0.03805_   |_0.171577_   |_0.51298_   |_4.89566_   |_32.5722_   |
+|**Generavimas**   |_0.001879_   |_0.020029_   |_0.17398_   |_1.72649_   |_12.9375_   |
+
 
 Naudojant list:
 |**LIST**   | 1k  |10k   |100k   |1M   |10M   |
