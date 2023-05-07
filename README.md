@@ -3,7 +3,7 @@ Naudojimo instrukcija: parsisiuntus failus įveskite "make" į komandinę eilut�
 # v1.2
 
 v1.2 atnaujinimai: šioje versijoje _studentas_ struktūra pilnai pakeista į _studentas_ klasę. Implementuota 5-ių taisyklė - sukurtas copy constructor, copy assignment operator, move constructor, move assignment operator, destruktorius. Programoje daug kur pakeistas kodas, dirbant su _studentas_ objektais, naudojant OOP praktiką.
-
+Funkcijoje "nuskaitymas" _push_back_ metodas pakeistas į _emplace_back_ metodą, taip sutaupau atminties. 
 Programa dabar veikia sparčiau, ir užima mažiau atminties.
 
 Testavimas atliktas naudojant vector konteinerį.
