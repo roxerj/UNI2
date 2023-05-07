@@ -16,7 +16,7 @@
 std::vector<studentas> skaidymas(std::vector<studentas> &studentai)
 {
     auto it = std::stable_partition(studentai.begin(), studentai.end(), [](const auto &s)
-                                    { return s.getGalutinis() < 5; });
+                                    { return s.getGalutinis() >= 5; });
     std::vector<studentas> temp(it, studentai.end());
     studentai.resize(studentai.size() - temp.size());
     studentai.shrink_to_fit();
@@ -128,9 +128,17 @@ std::string generavimas()
 }
 
 
+float count_vid(const std::vector<int> &nd_vec)
+    {
+        float temp = 0;
+        for(auto &pazymys:nd_vec)
+        {
+            temp += pazymys;
+        }
+        return temp/float(nd_vec.size());
+    }
 
-
-double count_med(std::vector<int> &nd_vec)
+float count_med(std::vector<int> &nd_vec)
 {
     std::sort(nd_vec.begin(), nd_vec.end());
     if(nd_vec.size() % 2 != 0)
@@ -139,7 +147,7 @@ double count_med(std::vector<int> &nd_vec)
     }
     else
     {
-        return (double(nd_vec.at((nd_vec.size()/2) - 1)) + double(nd_vec.at(nd_vec.size()/2))) / 2;
+        return (float(nd_vec.at((nd_vec.size()/2) - 1)) + float(nd_vec.at(nd_vec.size()/2))) / 2;
     }
 }
 
@@ -208,5 +216,9 @@ std::string generuoti(int count)
     
 }
 
+float countGalutinis(const std::vector<int>& nd_vec, int egz) 
+    {
+        return 0.4 * count_vid(nd_vec) + 0.6 * egz;
+    }
 
 

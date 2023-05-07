@@ -19,7 +19,7 @@ class studentas {
     private:
         std::string vardas;
         std::string pavarde;
-        float galutinis_vid {};
+        float galutinis_vid;
     public:
 
         studentas() : vardas(""), pavarde(""), galutinis_vid(0)
@@ -30,7 +30,7 @@ class studentas {
         {
 
         }
-        studentas(std::string vard, std::string pavard, int egz) : vardas(vard), pavarde(pavard), galutinis_vid(egz)
+        studentas(std::string vard, std::string pavard, float galutinis_vi) : vardas(vard), pavarde(pavard), galutinis_vid(galutinis_vi)
         {
 
         }
@@ -86,15 +86,7 @@ class studentas {
     
         }
 
-        double count_vid(const std::vector<int> &nd_vec)
-        {
-            double temp = 0;
-            for(auto &pazymys:nd_vec)
-            {
-                temp += pazymys;
-            }
-            return temp/double(nd_vec.size());
-        }
+        
         void vardasResize(int size)
         {
             vardas.resize(size, ' ');
@@ -119,10 +111,7 @@ class studentas {
         {
             return galutinis_vid;
         }
-        void setGalutinis(const std::vector<int>& nd_vec, int egz) 
-        {
-            galutinis_vid = 0.4 * count_vid(nd_vec) + 0.6 * egz;
-        }
+        
 };
 
 class Timer 
@@ -154,9 +143,11 @@ std::string generavimas();
 
 extern char sub_choice;
 
-double count_med(std::vector<int> &nd_vec);
+float count_med(std::vector<int> &nd_vec);
 
-double count_vid(const std::vector<int> &nd_vec);
+float count_vid(const std::vector<int> &nd_vec);
+
+float countGalutinis(const std::vector<int>& nd_vec, int egz); 
 
 bool compare(const studentas& s1, const studentas& s2);
 
@@ -201,6 +192,7 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
 
     std::vector<int> nd_vec {};
     int egz = 0;
+    float galutinis = 0;
     while(in_file >> temp_vardas >> temp_pavarde)
     {
         studentas stud(temp_vardas, temp_pavarde);
@@ -213,9 +205,9 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
         in_file >> egz;
 
         // stud.galutinis_med = 0.4 * count_med(nd_vec) + 0.6 * stud.egz;
-        stud.setGalutinis(nd_vec, egz);
+        galutinis = countGalutinis(nd_vec, egz);
 
-        studentai.emplace_back(temp_vardas, temp_pavarde, egz);
+        studentai.emplace_back(temp_vardas, temp_pavarde, galutinis);
         nd_vec.clear();
     }
 };
