@@ -12,6 +12,7 @@
 #include <cstdlib>
 #include <list>
 #include <deque>
+#include <ostream>
 
 
 class studentas {
@@ -21,16 +22,23 @@ class studentas {
         float galutinis_vid {};
     public:
 
-       
-        studentas(std::string vard, std::string pavard) : vardas(vard), pavarde(pavard)
+        studentas() : vardas(""), pavarde(""), galutinis_vid(0)
+        {
+
+        }
+        studentas(std::string vard, std::string pavard) : vardas(vard), pavarde(pavard), galutinis_vid(0)
+        {
+
+        }
+        studentas(std::string vard, std::string pavard, int egz) : vardas(vard), pavarde(pavard), galutinis_vid(egz)
         {
 
         }
         
-        studentas(const studentas &other) 
+        studentas(const studentas &other) //copy constructor
             :   vardas(other.vardas), 
                 pavarde(other.pavarde), 
-                galutinis_vid(other.galutinis_vid)  //copy constructor
+                galutinis_vid(other.galutinis_vid)  
         {
           //copy data from src to this
         }
@@ -65,6 +73,14 @@ class studentas {
             }
             return *this;
         }
+
+        friend std::ostream &operator<<(std::ostream &out, const studentas &s)
+        {
+            out << std::setw(15) << std::left << s.vardas << std::setw(20) << std::left << s.pavarde << std::setw(18) << std::left
+            << std::setprecision(3) << s.galutinis_vid << std::endl;
+            return out;
+        }
+        // studentas &operator<<(studentas)
         ~studentas() // destructor
         {
     
@@ -144,6 +160,8 @@ double count_vid(const std::vector<int> &nd_vec);
 
 bool compare(const studentas& s1, const studentas& s2);
 
+std::vector<studentas> skaidymas(std::vector<studentas> &studentai);
+
 std::string generuoti(int count);
 
 template<typename T>
@@ -158,7 +176,6 @@ void rusiavimas(T& studentai, T& vargsai)
     std::move(it, studentai.end(), std::back_inserter(vargsai));
     studentai.erase(it, studentai.end());
 }
-
 
 
 template<typename T>
@@ -198,7 +215,7 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
         // stud.galutinis_med = 0.4 * count_med(nd_vec) + 0.6 * stud.egz;
         stud.setGalutinis(nd_vec, egz);
 
-        studentai.push_back(stud);
+        studentai.emplace_back(temp_vardas, temp_pavarde, egz);
         nd_vec.clear();
     }
 };

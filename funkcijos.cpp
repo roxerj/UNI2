@@ -12,6 +12,19 @@
 #include <deque>
 #include <filesystem>
 
+
+std::vector<studentas> skaidymas(std::vector<studentas> &studentai)
+{
+    auto it = std::stable_partition(studentai.begin(), studentai.end(), [](const auto &s)
+                                    { return s.getGalutinis() < 5; });
+    std::vector<studentas> temp(it, studentai.end());
+    studentai.resize(studentai.size() - temp.size());
+    studentai.shrink_to_fit();
+
+    return temp;
+}
+
+
 std::string generavimas()
 {
     std::string failo_pavadinimas;
@@ -88,13 +101,7 @@ std::string generavimas()
 
                 in_file.close();
                 
-                std::cout << "Iveskite 1, jei norite naudoti vector konteineri, 2 jei norite naudoti list, 3 jei norite naudoti deque ";
-                std::cin >> sub_choice;
-
-                if (sub_choice != '1' && sub_choice != '2' && sub_choice != '3') 
-                {
-                    throw std::runtime_error("Klaida: blogas pasirinkimas. Pasirinkite '1', '2' arba '3'");
-                }
+                
                 
                 break;
             }
@@ -200,8 +207,6 @@ std::string generuoti(int count)
 
     
 }
-
-
 
 
 
