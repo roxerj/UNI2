@@ -14,41 +14,60 @@
 #include <deque>
 #include <ostream>
 
+class Zmogus
+{
+protected:
+    std::string vardas;
+    std::string pavarde;
 
-class studentas {
+    Zmogus(std::string vard, std::string pavard)
+    {
+        vardas = vard;
+        pavarde = pavard;
+    }
+
+    Zmogus()
+    {
+        vardas = "";
+        pavarde = "";
+    }
+    virtual ~Zmogus()
+    {
+        vardas.clear();
+        pavarde.clear();
+    }
+    virtual std::string getVardas() const = 0;
+};
+
+class studentas : public Zmogus
+{
     private:
-        std::string vardas;
-        std::string pavarde;
+        // std::string vardas;
+        // std::string pavarde;
         float galutinis_vid;
     public:
 
-        studentas() : vardas(""), pavarde(""), galutinis_vid(0)
+        studentas() : Zmogus(), galutinis_vid(0)
         {
 
         }
-        studentas(std::string vard, std::string pavard) : vardas(vard), pavarde(pavard), galutinis_vid(0)
+        studentas(std::string vard, std::string pavard) : Zmogus(vard, pavard), galutinis_vid(0)
         {
 
         }
-        studentas(std::string vard, std::string pavard, float galutinis_vi) : vardas(vard), pavarde(pavard), galutinis_vid(galutinis_vi)
+        studentas(std::string vard, std::string pavard, float galutinis_vi) : Zmogus(vard, pavard), galutinis_vid(galutinis_vi)
         {
 
         }
         
-        studentas(const studentas &other) //copy constructor
-            :   vardas(other.vardas), 
-                pavarde(other.pavarde), 
-                galutinis_vid(other.galutinis_vid)  
+        studentas(const studentas &other) : Zmogus(other.vardas, other.pavarde), galutinis_vid(other.galutinis_vid) // copy constructor
         {
           //copy data from src to this
         }
-        studentas(studentas &&other) //move constructor
-            :   vardas(std::move(other.vardas)),
-                pavarde(std::move(other.pavarde)),
-                galutinis_vid(std::move(other.galutinis_vid))
+        studentas(studentas &&other) : Zmogus(std::move(other.vardas), std::move(other.pavarde)), 
+        galutinis_vid(std::move(other.galutinis_vid)) // move constructor
         {
             //move data from src to this
-            
         }
         studentas &operator=(const studentas &other) //copy assignment operator
         {
@@ -67,9 +86,9 @@ class studentas {
         {
             if (this != &other)
             {
-                vardas = std::move(other.vardas);
-                pavarde = std::move(other.pavarde);
-                galutinis_vid = std::move(other.galutinis_vid);
+                this->vardas = std::move(other.vardas);
+                this->pavarde = std::move(other.pavarde);
+                this->galutinis_vid = std::move(other.galutinis_vid);
             }
             return *this;
         }
@@ -83,7 +102,7 @@ class studentas {
         // studentas &operator<<(studentas)
         ~studentas() // destructor
         {
-    
+            galutinis_vid = 0;
         }
 
         
@@ -97,7 +116,7 @@ class studentas {
         }
 
         //getter functions
-        std::string getVardas() const
+        std::string getVardas() const override
         {
             return vardas;
         }
