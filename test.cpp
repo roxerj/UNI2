@@ -19,10 +19,11 @@ int main() {
     std::cout << "s3.getGalutinis() = " << s3.getGalutinis() << std::endl; // should print the same value as s2
 
     // Move constructor
-    studentas s4(std::move(s3));
+    studentas s4 = s3;
     std::cout << "s4.getVardas() = " << s4.getVardas() << std::endl; // should print "Jonas"
     std::cout << "s4.getGalutinis() = " << s4.getGalutinis() << std::endl; // should print the same value as s2
-
+    std::cout << "s3.getVardas() = " << s3.getVardas() << std::endl; // sho
+    std::cout << "s3.getGalutinis() = " << s3.getGalutinis() << std::endl; // sho
     // Move assignment operator
     studentas s5("Varnas", "Varnaitis");
     s5.setGalutinis(nd_vec, 9);

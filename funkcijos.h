@@ -45,10 +45,12 @@ class studentas {
         studentas(studentas &&other) //move constructor
             :   vardas(std::move(other.vardas)),
                 pavarde(std::move(other.pavarde)),
-                galutinis_vid(std::move(other.galutinis_vid))
+                galutinis_vid(other.galutinis_vid)
         {
             //move data from src to this
-            
+            other.galutinis_vid = 0; 
+            //int && a = 5;
+            other.~studentas();
         }
         studentas &operator=(const studentas &other) //copy assignment operator
         {
@@ -83,7 +85,9 @@ class studentas {
         // studentas &operator<<(studentas)
         ~studentas() // destructor
         {
-    
+            vardas.clear();
+            pavarde.clear();
+            galutinis_vid = 0;
         }
 
         
@@ -111,7 +115,19 @@ class studentas {
         {
             return galutinis_vid;
         }
-        
+        void setGalutinis(const std::vector<int>& nd_vec, int egz) 
+        {
+            galutinis_vid = 0.4 * count_vid(nd_vec) + 0.6 * egz;
+        }
+        float count_vid(const std::vector<int> &nd_vec)
+        {
+            float temp = 0;
+            for(auto &pazymys:nd_vec)
+            {
+                temp += pazymys;
+            }
+            return temp/float(nd_vec.size());
+        }
 };
 
 class Timer 
