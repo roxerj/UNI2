@@ -3,6 +3,11 @@ Naudojimo instrukcija: parsisiuntus failus įveskite "make" į komandinę eilut�
 įvedus "make clean" bus ištrinti visi exe failai.  
 įvedus "make cleanresult" bus ištrinti _malaciai.txt_ ir _vargsai.txt_ failai.  
 
+# v1.5
+
+v1.5 atnaujinimai: sukurta abstrakti klasė _Zmogus_, klasė _studentas_ yra išvesta iš _Zmogus_.  
+Sukurtas virtualus destruktorius _Zmogus_ klasei, taip pati pridėta virtuali funkcija _getVardas_.
+
 
 # v1.2
 
