@@ -42,8 +42,6 @@ protected:
 class studentas : public Zmogus
 {
     private:
-        // std::string vardas;
-        // std::string pavarde;
         float galutinis_vid;
     public:
 
@@ -67,7 +65,8 @@ class studentas : public Zmogus
         studentas(studentas &&other) : Zmogus(std::move(other.vardas), std::move(other.pavarde)), 
         galutinis_vid(std::move(other.galutinis_vid)) // move constructor
         {
-            //move data from src to this
+            // other.~studentas();
+            other.galutinis_vid = 0;
         }
         studentas &operator=(const studentas &other) //copy assignment operator
         {
@@ -130,7 +129,21 @@ class studentas : public Zmogus
         {
             return galutinis_vid;
         }
-        
+
+        void setGalutinis(const std::vector<int>& nd_vec, int egz) 
+        {
+            galutinis_vid = 0.4 * count_vid(nd_vec) + 0.6 * egz;
+        }
+
+        float count_vid(const std::vector<int> &nd_vec)
+        {
+            float temp = 0;
+            for(auto &pazymys:nd_vec)
+            {
+                temp += pazymys;
+            }
+            return temp/float(nd_vec.size());
+        }
 };
 
 class Timer 

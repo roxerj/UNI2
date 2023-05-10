@@ -129,14 +129,14 @@ std::string generavimas()
 
 
 float count_vid(const std::vector<int> &nd_vec)
+{
+    float temp = 0;
+    for(auto &pazymys:nd_vec)
     {
-        float temp = 0;
-        for(auto &pazymys:nd_vec)
-        {
-            temp += pazymys;
-        }
-        return temp/float(nd_vec.size());
+        temp += pazymys;
     }
+    return temp/float(nd_vec.size());
+}
 
 float count_med(std::vector<int> &nd_vec)
 {
