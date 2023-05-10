@@ -8,12 +8,11 @@ Naudojimo instrukcija: parsisiuntus failus įveskite "make" į komandinę eilut�
 v1.5 atnaujinimai: sukurta abstrakti klasė _Zmogus_, klasė _studentas_ yra išvesta iš _Zmogus_.  
 Sukurtas virtualus destruktorius _Zmogus_ klasei, taip pati pridėta virtuali funkcija _getVardas_.
 
-
 # v1.2
 
 v1.2 atnaujinimai: šioje versijoje _studentas_ struktūra pilnai pakeista į _studentas_ klasę. Implementuota 5-ių taisyklė - sukurtas copy constructor, copy assignment operator, move constructor, move assignment operator, destruktorius. Programoje daug kur pakeistas kodas, dirbant su _studentas_ objektais, naudojant OOP praktiką.  
 Funkcijoje "nuskaitymas" _push_back_ metodas pakeistas į _emplace_back_ metodą, taip sutaupau atminties.  
-Šioje versijoje panaudotas perkrautas >> operatorius studentas klasei, eilutė _std::cout >> studentas_ konsolėje išves studento vardą, pavardę ir galutinį pažymį.  
+Šioje versijoje panaudotas perkrautas << operatorius studentas klasei, eilutė _std::cout << studentas_ konsolėje išves studento vardą, pavardę ir galutinį pažymį.  
 Programa dabar veikia sparčiau, ir užima mažiau atminties.
 
 Testavimas atliktas naudojant vector konteinerį.
