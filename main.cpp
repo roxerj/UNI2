@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <iomanip>
 #include "funkcijos.h"
+#include "vector.h"
 #include <fstream>
 #include <chrono>
 #include <stdexcept>
@@ -18,8 +19,8 @@ int main(){
 
     failo_pavadinimas = generavimas();
     
-    std::vector<studentas> studentai_vector;
-   
+    manoVector<studentas> studentai_vector;
+    // std::vector<studentas> studentai_vector;
 
 
     Timer bendras_timer;
@@ -36,8 +37,11 @@ int main(){
     Timer sort_timer;
     sort_timer.start();
 
-    std::vector<studentas>vargsai_vector = skaidymas(studentai_vector);
-   
+    manoVector<studentas>vargsai_vector = skaidymas(studentai_vector);
+    // std::vector<studentas>vargsai_vector = skaidymas(studentai_vector);
+
+    // vargsai_vector.swap(studentai_vector); testavimui
+
     sort_timer.stop();
     std::cout << "Studentu skaidymas i vargsus ir malacius uztruko " << sort_timer.elapsed() << " sec." << std::endl;
     
@@ -47,7 +51,8 @@ int main(){
     bendras_timer.stop();
     std::cout << "Visos programos veikimo laikas " << bendras_timer.elapsed() << " sec." << std::endl;
     
-    std::cout << "vargsai dydis: " << vargsai_vector.size() << ", malaciai(studentai vector) dydis: " << studentai_vector.size() << std::endl;
+    std::cout << "vargsai dydis: " << vargsai_vector.getSize() << ", malaciai dydis: " << studentai_vector.getSize() << std::endl;
+    // std::cout << "vargsai dydis: " << vargsai_vector.size() << ", malaciai dydis: " << studentai_vector.size() << std::endl;
     
 
     return 0;

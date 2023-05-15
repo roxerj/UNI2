@@ -13,7 +13,8 @@
 #include <list>
 #include <deque>
 #include <ostream>
-
+template <class T, class... Args>
+class manoVector; // forward declaration
 class Zmogus
 {
 protected:
@@ -101,6 +102,7 @@ class studentas : public Zmogus
         // studentas &operator<<(studentas)
         ~studentas() // destructor
         {
+            // std::cout << "destructor called for " << this->vardas << ", "<< this->galutinis_vid << std::endl;
             galutinis_vid = 0;
         }
 
@@ -183,21 +185,19 @@ float countGalutinis(const std::vector<int>& nd_vec, int egz);
 
 bool compare(const studentas& s1, const studentas& s2);
 
-std::vector<studentas> skaidymas(std::vector<studentas> &studentai);
-
 std::string generuoti(int count);
 
-template<typename T>
-void rusiavimas(T& studentai, T& vargsai)
+template <typename T>
+T skaidymas(T &studentai)
 {
-    auto it = std::stable_partition(studentai.begin(), studentai.end(), [](const studentas& s) { return s.getGalutinis() >= 5; });
-    if (it == studentai.end()) {
-        // partition failed, do not modify vectors
-        std::cout << "partition failed\n";
-        return;
-    }
-    std::move(it, studentai.end(), std::back_inserter(vargsai));
-    studentai.erase(it, studentai.end());
+    auto it = std::stable_partition(studentai.begin(), studentai.end(), [](const auto &s)
+                                    { return s.getGalutinis() >= 5; });
+    T temp(it, studentai.end());
+    studentai.resize(studentai.getSize() - temp.getSize()); // using manoVector
+    // studentai.resize(studentai.size() - temp.size()); // using std::vector
+    studentai.shrink_to_fit();
+
+    return temp;
 }
 
 
@@ -242,6 +242,7 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
         studentai.emplace_back(temp_vardas, temp_pavarde, galutinis);
         nd_vec.clear();
     }
+    studentai.shrink_to_fit();
 };
 
 template<typename T>

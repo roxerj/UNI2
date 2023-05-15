@@ -4,6 +4,7 @@
 #include <string>
 #include <algorithm>
 #include "funkcijos.h"
+#include "vector.h"
 #include <chrono>
 #include <fstream>
 #include <cstring>
@@ -13,16 +14,6 @@
 #include <filesystem>
 
 
-std::vector<studentas> skaidymas(std::vector<studentas> &studentai)
-{
-    auto it = std::stable_partition(studentai.begin(), studentai.end(), [](const auto &s)
-                                    { return s.getGalutinis() >= 5; });
-    std::vector<studentas> temp(it, studentai.end());
-    studentai.resize(studentai.size() - temp.size());
-    studentai.shrink_to_fit();
-
-    return temp;
-}
 
 
 std::string generavimas()
