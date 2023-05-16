@@ -48,31 +48,32 @@ class studentas : public Zmogus
 
         studentas() : Zmogus(), galutinis_vid(0)
         {
-
+            // std::cout << "Default constructor called for " << this->vardas << ", "<< this->galutinis_vid << ", " << this << std::endl;
         }
         studentas(std::string vard, std::string pavard) : Zmogus(vard, pavard), galutinis_vid(0)
         {
-
+            // std::cout << "VardPavard constructor called for " << this->vardas << ", "<< this->galutinis_vid << ", " << this << std::endl;
         }
         studentas(std::string vard, std::string pavard, float galutinis_vi) : Zmogus(vard, pavard), galutinis_vid(galutinis_vi)
         {
-
+            // std::cout << "VardPavardGal Constructor called for " << this->vardas << ", "<< this->galutinis_vid << ", " << this << std::endl;
         }
         
         studentas(const studentas &other) : Zmogus(other.vardas, other.pavarde), galutinis_vid(other.galutinis_vid) // copy constructor
         {
-          //copy data from src to this
+            // std::cout << "copy Constructor called for " << this->vardas << ", "<< this->galutinis_vid << ", " << this << std::endl;
         }
         studentas(studentas &&other) : Zmogus(std::move(other.vardas), std::move(other.pavarde)), 
         galutinis_vid(std::move(other.galutinis_vid)) // move constructor
         {
             // other.~studentas();
+            // std::cout << "move Constructor called for " << this->vardas << ", "<< this->galutinis_vid << ", " << this << std::endl;
             other.galutinis_vid = 0;
         }
         studentas &operator=(const studentas &other) //copy assignment operator
         {
             //copy data from src to this
-            
+            // std::cout << "copy ass Constructor called for " << this->vardas << ", "<< this->galutinis_vid << ", " << this << std::endl;
             if (this != &other)
             {
                 this->vardas = other.vardas;
@@ -84,6 +85,7 @@ class studentas : public Zmogus
 
         studentas &operator=(studentas &&other) //move assignment operator
         {
+            // std::cout << " move ass Constructor called for " << this->vardas << ", "<< this->galutinis_vid << ", " << this << std::endl;
             if (this != &other)
             {
                 this->vardas = std::move(other.vardas);
@@ -99,10 +101,10 @@ class studentas : public Zmogus
             << std::setprecision(3) << s.galutinis_vid << std::endl;
             return out;
         }
-        // studentas &operator<<(studentas)
+        
         ~studentas() // destructor
         {
-            // std::cout << "destructor called for " << this->vardas << ", "<< this->galutinis_vid << std::endl;
+            // std::cout << "destructor called for " << this->vardas << ", "<< this->galutinis_vid << ", " << this << std::endl;
             galutinis_vid = 0;
         }
 
@@ -227,7 +229,7 @@ void nuskaitymas(T &studentai, std::string failo_pavadinimas)
     float galutinis = 0;
     while(in_file >> temp_vardas >> temp_pavarde)
     {
-        studentas stud(temp_vardas, temp_pavarde);
+        // studentas stud(temp_vardas, temp_pavarde);
         for(int i = 0; i < nd_count; i++)
         {
             in_file >> temp_nd;
