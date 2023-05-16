@@ -19,7 +19,7 @@ int main(){
 
     failo_pavadinimas = generavimas();
     
-    manoVector<studentas> studentai_vector;
+    myVector<studentas> studentai_vector;
     // std::vector<studentas> studentai_vector;
 
 
@@ -37,7 +37,7 @@ int main(){
     Timer sort_timer;
     sort_timer.start();
 
-    manoVector<studentas>vargsai_vector = skaidymas(studentai_vector);
+    myVector<studentas>vargsai_vector = skaidymas(studentai_vector);
     // std::vector<studentas>vargsai_vector = skaidymas(studentai_vector);
 
     // vargsai_vector.swap(studentai_vector); testavimui

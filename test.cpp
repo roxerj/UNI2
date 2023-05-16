@@ -4,8 +4,8 @@
 
 int main() {
     std::vector<int> stdVec = {1, 2, 3};
-    manoVector<int> myVec = {1, 2, 3};
-    manoVector<studentas> studentVec;
+    myVector<int> myVec = {1, 2, 3};
+    myVector<studentas> studentVec;
     studentVec.emplace_back("Vardas", "Pavarde", 6);
     studentVec.print();
 

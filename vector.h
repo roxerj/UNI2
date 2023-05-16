@@ -8,7 +8,7 @@
 #include <vector>
 
 template <class T, class... Args>
-class manoVector //Full vector implementation, except for operator invalidation
+class myVector //Full vector implementation, except for operator invalidation
 {
 private:
     T* arr;
@@ -16,10 +16,10 @@ private:
     int capacity;
 public:
 
-    manoVector() : arr(new T[1]), size(0), capacity(1) {}; // default constructor
-    manoVector(int size) : arr(new T[size]), size(size), capacity(size) {}; // constructor with size
+    myVector() : arr(new T[1]), size(0), capacity(1) {}; // default constructor
+    myVector(int size) : arr(new T[size]), size(size), capacity(size) {}; // constructor with size
     template <typename U>
-    manoVector(std::initializer_list<U> init) : size(init.size()), capacity(init.size()) // constructor with initializer list
+    myVector(std::initializer_list<U> init) : size(init.size()), capacity(init.size()) // constructor with initializer list
     {
         arr = new T[capacity];
         int i = 0;
@@ -29,17 +29,17 @@ public:
         }
     }
     template<typename InputIt>
-    manoVector(InputIt first, InputIt last) : manoVector(std::distance(first, last)) // constructor with iterators
+    myVector(InputIt first, InputIt last) : myVector(std::distance(first, last)) // constructor with iterators
     {
         std::copy(first, last, arr);
     }
 
     
-    manoVector(const manoVector<T>& other) : manoVector(other.size) // copy constructor
+    myVector(const myVector<T>& other) : myVector(other.size) // copy constructor
     {
         std::copy(other.arr, other.arr + other.size, arr);
     }
-    ~manoVector()
+    ~myVector()
     {
         // for (int i = 0; i < size; i++) 
         // {
@@ -175,7 +175,7 @@ public:
         }
         size--;
     }
-    void swap(manoVector<T>& other) // swaps contents of two vectors
+    void swap(myVector<T>& other) // swaps contents of two vectors
     {
         std::swap(this->arr, other.arr);
         std::swap(this->size, other.size);
