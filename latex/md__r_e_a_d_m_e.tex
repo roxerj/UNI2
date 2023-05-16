@@ -1,0 +1,196 @@
+Naudojimo instrukcija\+: parsisiuntus failus įveskite \char`\"{}make\char`\"{} į komandinę eilutę, tada paleiskite exe failą. Sekite instrukcijas konsolėje. ~\newline
+ įvedus \char`\"{}make test\char`\"{} bus sukurtas test.\+exe failas, jį paleidus galima patikrinti Rule of 5 metodus, implementuotus programoje. ~\newline
+ įvedus \char`\"{}make clean\char`\"{} bus ištrinti visi exe failai. ~\newline
+ įvedus \char`\"{}make cleanresult\char`\"{} bus ištrinti {\itshape malaciai.\+txt} ir {\itshape vargsai.\+txt} failai. ~\newline
+\hypertarget{md__r_e_a_d_m_e_autotoc_md0}{}\doxysection{v1.\+5}\label{md__r_e_a_d_m_e_autotoc_md0}
+v1.\+5 atnaujinimai\+: sukurta abstrakti klasė {\itshape \mbox{\hyperlink{class_zmogus}{Zmogus}}}, klasė {\itshape studentas} yra išvesta iš {\itshape \mbox{\hyperlink{class_zmogus}{Zmogus}}}. ~\newline
+ Sukurtas virtualus destruktorius {\itshape \mbox{\hyperlink{class_zmogus}{Zmogus}}} klasei, taip pati pridėta virtuali funkcija {\itshape get\+Vardas}.\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{v1.\+2}\label{md__r_e_a_d_m_e_autotoc_md1}
+v1.\+2 atnaujinimai\+: šioje versijoje {\itshape studentas} struktūra pilnai pakeista į {\itshape studentas} klasę. Implementuota 5-\/ių taisyklė -\/ sukurtas copy constructor, copy assignment operator, move constructor, move assignment operator, destruktorius. Programoje daug kur pakeistas kodas, dirbant su {\itshape studentas} objektais, naudojant OOP praktiką. ~\newline
+ Funkcijoje \char`\"{}nuskaitymas\char`\"{} {\itshape push\+\_\+back} metodas pakeistas į {\itshape emplace\+\_\+back} metodą, taip sutaupau atminties. ~\newline
+ Šioje versijoje panaudotas perkrautas \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} operatorius studentas klasei, eilutė {\itshape std\+::cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} studentas} konsolėje išves studento vardą, pavardę ir galutinį pažymį. ~\newline
+ Programa dabar veikia sparčiau, ir užima mažiau atminties.
+
+Testavimas atliktas naudojant vector konteinerį. \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{VECTOR}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{VECTOR}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-4}
+\endhead
+{\bfseries{Nuskaitymas}}   &{\itshape 0.\+193s}   &{\itshape 1.\+423s}   &{\itshape 14.\+176s}    \\\cline{1-4}
+{\bfseries{Rūšiavimas}}   &{\itshape 0.\+007s}   &{\itshape 0.\+059s}   &{\itshape 0.\+64s}    \\\cline{1-4}
+{\bfseries{Vargsai išvedimas}}   &{\itshape 0.\+051s}   &{\itshape 0.\+335s}   &{\itshape 3.\+521s}    \\\cline{1-4}
+{\bfseries{Malaciai išvedimas}}   &{\itshape 0.\+071s}   &{\itshape 0.\+484s}   &{\itshape 5.\+788s}    \\\cline{1-4}
+{\bfseries{Viso}}   &{\itshape 0.\+326s}   &{\itshape 2.\+307s}   &{\itshape 24.\+152s}   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{v1.\+1}\label{md__r_e_a_d_m_e_autotoc_md2}
+v1.\+1 atnaujinimai\+: ankstesnėse versijose naudojau struct studentas, dabar naudoju class studentas. Programa veikia truputį sparčiau, bet nežymiai.
+
+Naudojant vector\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-4}
+\endhead
+{\bfseries{struct}}   &{\itshape 0.\+51s}   &{\itshape 4.\+89s}   &{\itshape 32.\+57s}    \\\cline{1-4}
+{\bfseries{class}}   &{\itshape 0.\+49s}   &{\itshape 4.\+36s}   &{\itshape 27.\+33s}   \\\cline{1-4}
+\end{longtabu}
+
+
+Optimizavimo flag\textquotesingle{}ų testavimas (10M)\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ laikas(s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ exe failo užimama vieta    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ laikas(s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ exe failo užimama vieta    }\\\cline{1-3}
+\endhead
+{\bfseries{-\/}}   &{\itshape 29.\+8815}   &{\itshape 1059KB}    \\\cline{1-3}
+{\bfseries{-\/O1}}   &{\itshape 26.\+2167}   &{\itshape 1302KB}    \\\cline{1-3}
+{\bfseries{-\/O2}}   &{\itshape 25.\+8021}   &{\itshape 1343KB}    \\\cline{1-3}
+{\bfseries{-\/O3}}   &{\itshape 25.\+3347}   &{\itshape 1457KB}   \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{v1.\+0}\label{md__r_e_a_d_m_e_autotoc_md3}
+v1.\+0 atnaujinimai\+: Skaidydamas studentai konteinerį į malaciai ir vargsai praeitose versijose sukurdavau du naujus konteinerius malaciai ir vargsai, kopijuodamas studento objektą į vieną arba kitą konteinerį, tokia programos realizacija yra neefektyvi atminties atžvilgiu. v1.\+0 versijoje studentai konteinerį skaidau naudodamas tik vieną naują konteinerį vargsai, perkeldamas studento objektą iš studentai į vargsai, tad konteineryje studentai lieka \char`\"{}malaciai\char`\"{}. Sukurtas makefile, parašius komandinę eilutę \char`\"{}make\char`\"{}, programa yra sukompiliuojama ir paruošiamas exe failas.
+
+Mano kompiuterio specifikacijos \+: 16gb RAM, CPU -\/ AMD Ryzen 5 4600H, GPU -\/ Nvidia Geforce GTX 1650 TI
+
+Programos veikimo principas\+:
+
+Programa paklausia vartotojo, ar generuoti studentų failą, ar atlikti veiksmus su jau esamu failu. Jei pasirenkama generuoti failą, vartotojo klausiama, kiek studentų bus faile. Prieš atliekant veiksmus su failu, vartotojo klausiama, kurį konteinerį naudoti veiksmams su failu. (Vector, list, deque) Atliekami veiksmai su pasirinktu failu\+: 1) Nuskaitomi duomenys, suskaičiuojami studentų galutiniai pažymiai 2) Studentai išskaidomi į \char`\"{}malacius\char`\"{} ir \char`\"{}vargsus\char`\"{} naudojant studentai ir vargsai konteinerius\+: studentai konteineryje lieka studentai, kurių gal. pažymys \texorpdfstring{$>$}{>}=5, o vargsai konteineryje atsiranda studentai, kurių gal. pažymys \texorpdfstring{$<$}{<}5, jie ištrinami iš studentai konteinerio. 3) Suformatuojami duomenys iš vargsai konteinerio, rezultatas išvedamas į \char`\"{}vargsai.\+txt\char`\"{} 4) Suformatuojami duomenys iš studentai konteinerio, rezultatas išvedamas į \char`\"{}malaciai.\+txt\char`\"{}
+
+Matome, kad atnaujintoje programos versijoje programa atlieka darbą truputį sparčiau, bet nedaug. Su 10m studentų programa veikia gal 5sec trumpiau nei praeitoje versijoje.
+
+Naudojant vector\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{VECTOR}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{VECTOR}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endhead
+{\bfseries{Nuskaitymas}}   &{\itshape 0.\+004411}   &{\itshape 0.\+034408}   &{\itshape 0.\+290819}   &{\itshape 2.\+891}   &{\itshape 20.\+6048}    \\\cline{1-6}
+{\bfseries{Rūšiavimas}}   &{\itshape 0.\+000471}   &{\itshape 0.\+005166}   &{\itshape 0.\+037893}   &{\itshape 0.\+233474}   &{\itshape 1.\+62612}    \\\cline{1-6}
+{\bfseries{Vargsai išvedimas}}   &{\itshape 0.\+026193}   &{\itshape 0.\+054142}   &{\itshape 0.\+074769}   &{\itshape 0.\+718508}   &{\itshape 4.\+06602}    \\\cline{1-6}
+{\bfseries{Malaciai išvedimas}}   &{\itshape 0.\+002301}   &{\itshape 0.\+073061}   &{\itshape 0.\+104735}   &{\itshape 1.\+04496}   &{\itshape 6.\+24776}    \\\cline{1-6}
+{\bfseries{Viso}}   &{\itshape 0.\+03805}   &{\itshape 0.\+171577}   &{\itshape 0.\+51298}   &{\itshape 4.\+89566}   &{\itshape 32.\+5722}    \\\cline{1-6}
+{\bfseries{Generavimas}}   &{\itshape 0.\+001879}   &{\itshape 0.\+020029}   &{\itshape 0.\+17398}   &{\itshape 1.\+72649}   &{\itshape 12.\+9375}   \\\cline{1-6}
+\end{longtabu}
+
+
+Naudojant list\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{LIST}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{LIST}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endhead
+{\bfseries{Nuskaitymas}}   &{\itshape 0.\+002255}   &{\itshape 0.\+020398}   &{\itshape 0.\+204996}   &{\itshape 1.\+76657}   &{\itshape 18.\+8843}    \\\cline{1-6}
+{\bfseries{Rūšiavimas}}   &{\itshape 0.\+000178}   &{\itshape 0.\+001654}   &{\itshape 0.\+019641}   &{\itshape 0.\+180727}   &{\itshape 0.\+30544}    \\\cline{1-6}
+{\bfseries{Vargsai išvedimas}}   &{\itshape 0.\+020804}   &{\itshape 0.\+004767}   &{\itshape 0.\+043911}   &{\itshape 0.\+450671}   &{\itshape 3.\+2987}    \\\cline{1-6}
+{\bfseries{Malaciai išvedimas}}   &{\itshape 0.\+033024}   &{\itshape 0.\+006826}   &{\itshape 0.\+063624}   &{\itshape 0.\+627831}   &{\itshape 4.\+66719}    \\\cline{1-6}
+{\bfseries{Viso}}   &{\itshape 0.\+03805}   &{\itshape 0.\+037109}   &{\itshape 0.\+33603}   &{\itshape 2.\+73121}   &{\itshape 27.\+981}   \\\cline{1-6}
+\end{longtabu}
+
+
+Naudojant deque\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{DEQUE}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{DEQUE}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endhead
+{\bfseries{Nuskaitymas}}   &{\itshape 0.\+002619}   &{\itshape 0.\+019049}   &{\itshape 0.\+201048}   &{\itshape 1.\+94471}   &{\itshape 18.\+5413}    \\\cline{1-6}
+{\bfseries{Rūšiavimas}}   &{\itshape 0.\+000167}   &{\itshape 0.\+001469}   &{\itshape 0.\+015256}   &{\itshape 0.\+130697}   &{\itshape 0.\+49566}    \\\cline{1-6}
+{\bfseries{Vargsai išvedimas}}   &{\itshape 0.\+019543}   &{\itshape 0.\+00548}   &{\itshape 0.\+039213}   &{\itshape 0.\+439459}   &{\itshape 2.\+97396}    \\\cline{1-6}
+{\bfseries{Malaciai išvedimas}}   &{\itshape 0.\+028777}   &{\itshape 0.\+007408}   &{\itshape 0.\+056731}   &{\itshape 0.\+661483}   &{\itshape 4.\+49107}    \\\cline{1-6}
+{\bfseries{Viso}}   &{\itshape 0.\+054019}   &{\itshape 0.\+036882}   &{\itshape 0.\+316761}   &{\itshape 3.\+18256}   &{\itshape 26.\+532}   \\\cline{1-6}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{v0.\+5}\label{md__r_e_a_d_m_e_autotoc_md4}
+v0.\+5 atnaujinimai\+: Dabar programa leidžia pasirinkti konteinerį, su kuriuo bus atliekami veiksmai -\/ vector, list arba deque. Naudoju šablonines funkcijas, kurios veikia su bet kokiu naudojamu konteineriu.
+
+Mano kompiuterio specifikacijos \+: 16gb RAM, CPU -\/ AMD Ryzen 5 4600H, GPU -\/ Nvidia Geforce GTX 1650 TI
+
+Programos veikimo principas\+:
+
+Programa paklausia vartotojo, ar generuoti studentų failą, ar atlikti veiksmus su jau esamu failu. Jei pasirenkama generuoti failą, vartotojo klausiama, kiek studentų bus faile. Prieš atliekant veiksmus su failu, vartotojo klausiama, kurį konteinerį naudoti veiksmams su failu. (Vector, list, deque) Atliekami veiksmai su pasirinktu failu\+: 1) Nuskaitomi duomenys, suskaičiuojami studentų galutiniai pažymiai 2) Studentai išrūšiuojami į du naujus konteinerius\+: malaciai, jei galutinis pažymis \texorpdfstring{$>$}{>}=5, vargsai, jei pažymys \texorpdfstring{$<$}{<}5 3) Suformatuojami duomenys iš vargsai konteinerio, rezultatas išvedamas į \char`\"{}vargsai.\+txt\char`\"{} 4) Suformatuojami duomenys iš malaciai konteinerio, rezultatas išvedamas į \char`\"{}malaciai.\+txt\char`\"{}
+
+Matome, kad naudojant list arba deque vietoj vector, programos veikimo sparta beveik nesikeičia.
+
+Naudojant list\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{LIST}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{LIST}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endhead
+{\bfseries{Nuskaitymas}}   &{\itshape 0.\+002255}   &{\itshape 0.\+020398}   &{\itshape 0.\+204996}   &{\itshape 1.\+76657}   &{\itshape 19.\+2724}    \\\cline{1-6}
+{\bfseries{Rūšiavimas}}   &{\itshape 0.\+000178}   &{\itshape 0.\+001654}   &{\itshape 0.\+019641}   &{\itshape 0.\+180727}   &{\itshape 1.\+84553}    \\\cline{1-6}
+{\bfseries{Vargsai išvedimas}}   &{\itshape 0.\+020804}   &{\itshape 0.\+004767}   &{\itshape 0.\+043911}   &{\itshape 0.\+450671}   &{\itshape 4.\+40405}    \\\cline{1-6}
+{\bfseries{Malaciai išvedimas}}   &{\itshape 0.\+033024}   &{\itshape 0.\+006826}   &{\itshape 0.\+063624}   &{\itshape 0.\+627831}   &{\itshape 6.\+41769}    \\\cline{1-6}
+{\bfseries{Viso}}   &{\itshape 0.\+03805}   &{\itshape 0.\+037109}   &{\itshape 0.\+33603}   &{\itshape 3.\+03121}   &{\itshape 31.\+981}    \\\cline{1-6}
+{\bfseries{Generavimas}}   &{\itshape 0.\+001879}   &{\itshape 0.\+020029}   &{\itshape 0.\+17398}   &{\itshape 1.\+72649}   &{\itshape 12.\+9375}   \\\cline{1-6}
+\end{longtabu}
+
+
+Naudojant deque\+: \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{DEQUE}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ {\bfseries{DEQUE}}   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endhead
+{\bfseries{Nuskaitymas}}   &{\itshape 0.\+002619}   &{\itshape 0.\+019049}   &{\itshape 0.\+201048}   &{\itshape 1.\+94471}   &{\itshape 19.\+258}    \\\cline{1-6}
+{\bfseries{Rūšiavimas}}   &{\itshape 0.\+000167}   &{\itshape 0.\+001469}   &{\itshape 0.\+015256}   &{\itshape 0.\+130697}   &{\itshape 1.\+60812}    \\\cline{1-6}
+{\bfseries{Vargsai išvedimas}}   &{\itshape 0.\+019543}   &{\itshape 0.\+00548}   &{\itshape 0.\+039213}   &{\itshape 0.\+439459}   &{\itshape 4.\+32674}    \\\cline{1-6}
+{\bfseries{Malaciai išvedimas}}   &{\itshape 0.\+028777}   &{\itshape 0.\+007408}   &{\itshape 0.\+056731}   &{\itshape 0.\+661483}   &{\itshape 6.\+0704}    \\\cline{1-6}
+{\bfseries{Viso}}   &{\itshape 0.\+054019}   &{\itshape 0.\+036882}   &{\itshape 0.\+316761}   &{\itshape 3.\+18256}   &{\itshape 31.\+2998}    \\\cline{1-6}
+{\bfseries{Generavimas}}   &{\itshape 0.\+001879}   &{\itshape 0.\+020029}   &{\itshape 0.\+17398}   &{\itshape 1.\+72649}   &{\itshape 12.\+9375}   \\\cline{1-6}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysection{v0.\+4}\label{md__r_e_a_d_m_e_autotoc_md5}
+v0.\+4 atnaujinimai\+: programa veikia zymiai sparciau nei v0.\+3, studentu vektoriu isrusiuoju naudodamas du naujus vektorius -\/ malaciai ir vargsai. Visos programos laikas matuojamas atskirai nuo failo generavimo laiko. Mano kompiuterio specifikacijos \+: 16gb RAM, CPU -\/ AMD Ryzen 5 4600H, GPU -\/ Nvidia Geforce GTX 1650 TI
+
+Programos veikimo principas\+:
+
+Programa paklausia vartotojo, ar generuoti studentų failą, ar atlikti veiksmus su jau esamu failu. Jei pasirenkama generuoti failą, vartotojo klausiama, kiek studentų bus faile. Atliekami veiksmai su pasirinktu failu\+: 1) Nuskaitomi duomenys, suskaičiuojami studentų galutiniai pažymiai 2) Studentai išrūšiuojami į du naujus vektorius\+: malaciai, jei galutinis pažymis \texorpdfstring{$>$}{>}=5, vargsai, jei pažymys \texorpdfstring{$<$}{<}5 3) Suformatuojami duomenys iš vargsai vektoriaus, rezultatas išvedamas į \char`\"{}vargsai.\+txt\char`\"{} 4) Suformatuojami duomenys iš malaciai vektoriaus, rezultatas išvedamas į \char`\"{}malaciai.\+txt\char`\"{}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100k   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1M   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10M    }\\\cline{1-6}
+\endhead
+{\bfseries{Nuskaitymas}}   &{\itshape 0.\+004411}   &{\itshape 0.\+034408}   &{\itshape 0.\+290819}   &{\itshape 2.\+891}   &{\itshape 20.\+6048}    \\\cline{1-6}
+{\bfseries{Rūšiavimas}}   &{\itshape 0.\+000471}   &{\itshape 0.\+005166}   &{\itshape 0.\+037893}   &{\itshape 0.\+233474}   &{\itshape 1.\+62612}    \\\cline{1-6}
+{\bfseries{Vargsai išvedimas}}   &{\itshape 0.\+026193}   &{\itshape 0.\+054142}   &{\itshape 0.\+074769}   &{\itshape 0.\+718508}   &{\itshape 4.\+06602}    \\\cline{1-6}
+{\bfseries{Malaciai išvedimas}}   &{\itshape 0.\+002301}   &{\itshape 0.\+073061}   &{\itshape 0.\+104735}   &{\itshape 1.\+04496}   &{\itshape 6.\+24776}    \\\cline{1-6}
+{\bfseries{Viso}}   &{\itshape 0.\+03805}   &{\itshape 0.\+171577}   &{\itshape 0.\+51298}   &{\itshape 4.\+89566}   &{\itshape 32.\+5722}    \\\cline{1-6}
+{\bfseries{Generavimas}}   &{\itshape 0.\+001879}   &{\itshape 0.\+020029}   &{\itshape 0.\+17398}   &{\itshape 1.\+72649}   &{\itshape 12.\+9375}   \\\cline{1-6}
+\end{longtabu}

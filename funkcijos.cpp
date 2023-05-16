@@ -15,7 +15,11 @@
 
 
 
-
+/**
+ * Generate student data and save it to a file.
+ * Let the user choose action: generate a new file or work with an existing one. Then let the user choose the file.
+ * @return The name of the generated file.
+ */
 std::string generavimas()
 {
     std::string failo_pavadinimas;
@@ -118,7 +122,12 @@ std::string generavimas()
     return failo_pavadinimas;
 }
 
-
+/**
+ * Calculate the average value from a vector of integers.
+ *
+ * @param nd_vec The vector of integers.
+ * @return The average value.
+ */
 float count_vid(const std::vector<int> &nd_vec)
 {
     float temp = 0;
@@ -129,6 +138,12 @@ float count_vid(const std::vector<int> &nd_vec)
     return temp/float(nd_vec.size());
 }
 
+/**
+ * Calculate the median value from a vector of integers.
+ *
+ * @param nd_vec The vector of integers.
+ * @return The median value.
+ */
 float count_med(std::vector<int> &nd_vec)
 {
     std::sort(nd_vec.begin(), nd_vec.end());
@@ -143,7 +158,13 @@ float count_med(std::vector<int> &nd_vec)
 }
 
 
-
+/**
+ * Compare two instances of the studentas class.
+ *
+ * @param s1 The first studentas object.
+ * @param s2 The second studentas object.
+ * @return True if s1 is considered "smaller" than s2, false otherwise.
+ */
 bool compare(const studentas& s1, const studentas& s2) {
     if(s1.getPavarde() == s2.getPavarde())
     {
@@ -155,6 +176,12 @@ bool compare(const studentas& s1, const studentas& s2) {
     }
 }
 
+/**
+ * Generate a string with student data.
+ *
+ * @param count The number of students to generate.
+ * @return The generated string.
+ */
 std::string generuoti(int count)
 {
     Timer generate_timer;
@@ -207,6 +234,13 @@ std::string generuoti(int count)
     
 }
 
+/**
+ * Calculate the final grade from a vector of integers and an exam score.
+ *
+ * @param nd_vec The vector of integers.
+ * @param egz The exam score.
+ * @return The final grade.
+ */
 float countGalutinis(const std::vector<int>& nd_vec, int egz) 
     {
         return 0.4 * count_vid(nd_vec) + 0.6 * egz;
