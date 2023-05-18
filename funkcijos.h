@@ -214,9 +214,9 @@ class studentas : public Zmogus
         /**
          * @brief Getter of galutinis_vid
          * 
-         * @return double 
+         * @return float 
          */
-        double getGalutinis() const
+        float getGalutinis() const
         {
             return galutinis_vid;
         }
@@ -229,7 +229,7 @@ class studentas : public Zmogus
          */
         void setGalutinis(const std::vector<int>& nd_vec, int egz) 
         {
-            galutinis_vid = 0.4 * count_vid(nd_vec) + 0.6 * egz;
+            galutinis_vid = (float)0.4 * count_vid(nd_vec) + (float)0.6 * egz;
         }
 
         /**

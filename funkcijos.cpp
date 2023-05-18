@@ -12,7 +12,8 @@
 #include <list>
 #include <deque>
 #include <filesystem>
-
+#include <iterator>
+#define _CRT_SECURE_NO_WARNINGS
 
 
 /**

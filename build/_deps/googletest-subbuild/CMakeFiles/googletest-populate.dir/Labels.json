@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/googletest-populate"
+		},
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/806543ee5ea7f7eb2b6cd1743c3f6a47/googletest-populate.rule"
+		},
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/439d25588a466d896579a700b6b31738/googletest-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/86022e42b798c8fd6a5da60e486c0eee/googletest-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/86022e42b798c8fd6a5da60e486c0eee/googletest-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/86022e42b798c8fd6a5da60e486c0eee/googletest-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/86022e42b798c8fd6a5da60e486c0eee/googletest-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/86022e42b798c8fd6a5da60e486c0eee/googletest-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/86022e42b798c8fd6a5da60e486c0eee/googletest-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/86022e42b798c8fd6a5da60e486c0eee/googletest-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/juoza/cpp projects/UNI2/build/_deps/googletest-subbuild/CMakeFiles/86022e42b798c8fd6a5da60e486c0eee/googletest-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"googletest-populate"
+		],
+		"name" : "googletest-populate"
+	}
+}

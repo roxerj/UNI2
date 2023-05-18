@@ -6,7 +6,7 @@ all: main
 main: main.cpp funkcijos.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
-test: test.cpp
+test: test.cpp funkcijos.cpp
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 clean:

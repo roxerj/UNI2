@@ -1,2 +1,4 @@
 *.txt
+!CmakeLists.txt
 *.exe
+Doxyfile

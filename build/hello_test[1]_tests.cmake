@@ -1,0 +1,7 @@
+add_test([=[CompareTest.SameSurnameDifferentFirstName]=]  [==[C:/Users/juoza/cpp projects/UNI2/build/Debug/hello_test.exe]==] [==[--gtest_filter=CompareTest.SameSurnameDifferentFirstName]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[CompareTest.SameSurnameDifferentFirstName]=]  PROPERTIES WORKING_DIRECTORY [==[C:/Users/juoza/cpp projects/UNI2/build]==] SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+add_test([=[HelloTest.BasicAssertions]=]  [==[C:/Users/juoza/cpp projects/UNI2/build/Debug/hello_test.exe]==] [==[--gtest_filter=HelloTest.BasicAssertions]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[HelloTest.BasicAssertions]=]  PROPERTIES WORKING_DIRECTORY [==[C:/Users/juoza/cpp projects/UNI2/build]==] SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+add_test([=[CountVidTest.AverageCalculation]=]  [==[C:/Users/juoza/cpp projects/UNI2/build/Debug/hello_test.exe]==] [==[--gtest_filter=CountVidTest.AverageCalculation]==] --gtest_also_run_disabled_tests)
+set_tests_properties([=[CountVidTest.AverageCalculation]=]  PROPERTIES WORKING_DIRECTORY [==[C:/Users/juoza/cpp projects/UNI2/build]==] SKIP_REGULAR_EXPRESSION [==[\[  SKIPPED \]]==])
+set(  hello_test_TESTS CompareTest.SameSurnameDifferentFirstName HelloTest.BasicAssertions CountVidTest.AverageCalculation)
