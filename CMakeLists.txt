@@ -17,7 +17,7 @@ enable_testing()
 
 # Add the additional source files here
 set(SOURCES
-  hello_test.cc
+  unitTests.cc
   funkcijos.cpp
   # Add more files as needed
 )
