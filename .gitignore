@@ -2,3 +2,5 @@
 !CmakeLists.txt
 *.exe
 Doxyfile
+/build
+hello_test.cc
