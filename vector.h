@@ -25,6 +25,7 @@ private:
     int capacity; /**< Current capacity of the vector. */
 
 public:
+    int myVecCount = 0;
     /**
      * @brief Default constructor.
      */
@@ -173,6 +174,7 @@ public:
      */
     void reserve(int newCapacity)
     {
+        myVecCount++;
         T* temp = new T[newCapacity];
         for (int i = 0; i < size; i++)
         {

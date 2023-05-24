@@ -313,8 +313,8 @@ T skaidymas(T &studentai)
     auto it = std::stable_partition(studentai.begin(), studentai.end(), [](const auto &s)
                                     { return s.getGalutinis() >= 5; });
     T temp(it, studentai.end());
-    studentai.resize(studentai.getSize() - temp.getSize()); // using myVector
-    // studentai.resize(studentai.size() - temp.size()); // using std::vector
+    // studentai.resize(studentai.getSize() - temp.getSize()); // using myVector
+    studentai.resize(studentai.size() - temp.size()); // using std::vector
     studentai.shrink_to_fit();
 
     return temp;
